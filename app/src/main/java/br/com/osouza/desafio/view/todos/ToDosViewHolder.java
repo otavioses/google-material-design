@@ -13,6 +13,7 @@ public class ToDosViewHolder extends RecyclerView.ViewHolder {
 
     public TextView title;
     public ImageView completed;
+
     public ToDosViewHolder(@NonNull View itemView) {
         super(itemView);
         title = itemView.findViewById(R.id.title);

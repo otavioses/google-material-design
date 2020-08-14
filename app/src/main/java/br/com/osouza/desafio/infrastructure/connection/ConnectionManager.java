@@ -1,7 +1,6 @@
-package br.com.osouza.desafio.infrastructure;
+package br.com.osouza.desafio.infrastructure.connection;
 
 import com.google.gson.Gson;
-import com.squareup.moshi.Moshi;
 
 import java.util.concurrent.TimeUnit;
 

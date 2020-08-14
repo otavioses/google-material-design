@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.osouza.desafio.R;
-import br.com.osouza.desafio.infrastructure.ConnectionManager;
-import br.com.osouza.desafio.infrastructure.JsonPlaceHolderApi;
+import br.com.osouza.desafio.infrastructure.connection.ConnectionManager;
+import br.com.osouza.desafio.infrastructure.connection.JsonPlaceHolderApi;
 import br.com.osouza.desafio.model.Todo;
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,9 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.osouza.desafio.R;
-import br.com.osouza.desafio.infrastructure.ConnectionManager;
-import br.com.osouza.desafio.infrastructure.JsonPlaceHolderApi;
+import br.com.osouza.desafio.infrastructure.connection.ConnectionManager;
+import br.com.osouza.desafio.infrastructure.connection.JsonPlaceHolderApi;
+import br.com.osouza.desafio.infrastructure.database.PostListDAO;
 import br.com.osouza.desafio.model.Post;
+import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -38,28 +39,29 @@ public class PostsFragment extends Fragment {
         adapter = new PostsAdapter(posts);
         recyclerView.setAdapter(adapter);
 
-        JsonPlaceHolderApi service = ConnectionManager.createService(JsonPlaceHolderApi.class);
+        PostListDAO dao = new PostListDAO();
+        posts.addAll(dao.getList(Realm.getDefaultInstance()));
 
-        Call<List<Post>> call = service.getPosts();
-        call.enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, retrofit2.Response<List<Post>> response) {
-                Log.d("", "");
-                if (response.isSuccessful()) {
-                    Log.d("", "");
-                    posts.clear();
-                    posts.addAll(response.body());
-                    adapter.notifyDataSetChanged();
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable e) {
-                Log.d("", "");
-            }
-        });
+//
+//        JsonPlaceHolderApi service = ConnectionManager.createService(JsonPlaceHolderApi.class);
+//
+//        Call<List<Post>> call = service.getPosts();
+//        call.enqueue(new Callback<List<Post>>() {
+//            @Override
+//            public void onResponse(Call<List<Post>> call, retrofit2.Response<List<Post>> response) {
+//                Log.d("", "");
+//                if (response.isSuccessful()) {
+//                    Log.d("", "");
+//                    posts.clear();
+//                    posts.addAll(response.body());
+//                    adapter.notifyDataSetChanged();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<List<Post>> call, Throwable e) {
+//                Log.d("", "");
+//            }
+//        });
 
         return root;
     }
