@@ -15,7 +15,6 @@ import br.com.osouza.desafio.infrastructure.database.AlbumEntity;
 public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsViewHolder> {
     private List<AlbumEntity> albums;
 
-
     public AlbumsAdapter(List<AlbumEntity> albums) {
         this.albums = albums;
     }
