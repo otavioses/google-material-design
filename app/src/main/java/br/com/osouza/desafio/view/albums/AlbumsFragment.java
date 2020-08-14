@@ -1,4 +1,4 @@
-package br.com.osouza.desafio.ui.posts;
+package br.com.osouza.desafio.view.albums;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,42 +17,39 @@ import java.util.List;
 import br.com.osouza.desafio.R;
 import br.com.osouza.desafio.infrastructure.ConnectionManager;
 import br.com.osouza.desafio.infrastructure.JsonPlaceHolderApi;
-import br.com.osouza.desafio.infrastructure.PostResponse;
+import br.com.osouza.desafio.model.Album;
 import br.com.osouza.desafio.model.Post;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
+import br.com.osouza.desafio.view.posts.PostsAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 
-public class PostsFragment extends Fragment {
+public class AlbumsFragment extends Fragment {
 
-    private PostsViewModel postsViewModel;
     private RecyclerView recyclerView;
-    private PostsAdapter adapter;
-    private List<Post> posts = new ArrayList<>();
+    private AlbumsAdapter adapter;
+    private List<Album> albums = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        postsViewModel = new ViewModelProvider(this).get(PostsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_posts, container, false);
+        View root = inflater.inflate(R.layout.fragment_albums, container, false);
 
-        recyclerView = root.findViewById(R.id.reciclerView);
+        recyclerView = root.findViewById(R.id.albumsReciclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        adapter = new PostsAdapter(posts);
+        adapter = new AlbumsAdapter(albums);
         recyclerView.setAdapter(adapter);
 
         JsonPlaceHolderApi service = ConnectionManager.createService(JsonPlaceHolderApi.class);
 
-        Call<List<Post>> call = service.getPosts();
-        call.enqueue(new Callback<List<Post>>() {
+        Call<List<Album>> call = service.getAlbums();
+        call.enqueue(new Callback<List<Album>>() {
             @Override
-            public void onResponse(Call<List<Post>> call, retrofit2.Response<List<Post>> response) {
+            public void onResponse(Call<List<Album>> call, retrofit2.Response<List<Album>> response) {
                 Log.d("", "");
                 if (response.isSuccessful()) {
                     Log.d("", "");
-                    posts.clear();
-                    posts.addAll(response.body());
+                    albums.clear();
+                    albums.addAll(response.body());
                     adapter.notifyDataSetChanged();
                 } else {
 
@@ -61,12 +57,11 @@ public class PostsFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<Post>> call, Throwable e) {
+            public void onFailure(Call<List<Album>> call, Throwable e) {
                 Log.d("", "");
             }
         });
 
         return root;
     }
-
 }

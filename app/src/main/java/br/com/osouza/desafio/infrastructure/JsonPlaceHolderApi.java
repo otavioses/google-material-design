@@ -7,6 +7,7 @@ import com.squareup.moshi.Moshi;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import br.com.osouza.desafio.model.Album;
 import br.com.osouza.desafio.model.Post;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -24,5 +25,8 @@ public interface JsonPlaceHolderApi {
 
     @GET("posts")
     Call<List<Post>> getPosts();
+
+    @GET("albums")
+    Call<List<Album>> getAlbums();
 
 }

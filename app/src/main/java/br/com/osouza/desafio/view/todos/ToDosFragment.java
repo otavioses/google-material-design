@@ -1,4 +1,4 @@
-package br.com.osouza.desafio.ui.todos;
+package br.com.osouza.desafio.view.todos;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
