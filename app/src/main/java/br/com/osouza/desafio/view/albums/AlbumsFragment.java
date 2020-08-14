@@ -17,7 +17,10 @@ import java.util.List;
 import br.com.osouza.desafio.R;
 import br.com.osouza.desafio.infrastructure.connection.ConnectionManager;
 import br.com.osouza.desafio.infrastructure.connection.JsonPlaceHolderApi;
+import br.com.osouza.desafio.infrastructure.database.AlbumDAO;
+import br.com.osouza.desafio.infrastructure.database.PostDAO;
 import br.com.osouza.desafio.model.Album;
+import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -37,28 +40,8 @@ public class AlbumsFragment extends Fragment {
         adapter = new AlbumsAdapter(albums);
         recyclerView.setAdapter(adapter);
 
-        JsonPlaceHolderApi service = ConnectionManager.createService(JsonPlaceHolderApi.class);
-
-        Call<List<Album>> call = service.getAlbums();
-        call.enqueue(new Callback<List<Album>>() {
-            @Override
-            public void onResponse(Call<List<Album>> call, retrofit2.Response<List<Album>> response) {
-                Log.d("", "");
-                if (response.isSuccessful()) {
-                    Log.d("", "");
-                    albums.clear();
-                    albums.addAll(response.body());
-                    adapter.notifyDataSetChanged();
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Album>> call, Throwable e) {
-                Log.d("", "");
-            }
-        });
+        AlbumDAO dao = new AlbumDAO();
+        albums.addAll(dao.getList(Realm.getDefaultInstance()));
 
         return root;
     }

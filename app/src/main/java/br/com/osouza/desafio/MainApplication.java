@@ -19,7 +19,6 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         mContext = new WeakReference<>(getApplicationContext());
         DatabaseController.startRealm(this);
     }

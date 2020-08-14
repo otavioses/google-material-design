@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.osouza.desafio.model.Post;
 import io.realm.Realm;
 
-public class PostListDAO {
+public class PostDAO {
 
     public List<Post> getList(Realm realm) {
         List<PostEntity> postEntities = realm.where(PostEntity.class).findAll();
