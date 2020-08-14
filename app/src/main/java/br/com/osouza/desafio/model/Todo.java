@@ -1,10 +1,10 @@
 package br.com.osouza.desafio.model;
 
-public class Post {
+public class Todo {
     private long userId;
     private long id;
     private String title;
-    private String body;
+    private Boolean completed;
 
     public long getUserId() {
         return userId;
@@ -18,7 +18,7 @@ public class Post {
         return title;
     }
 
-    public String getBody() {
-        return body;
+    public Boolean getCompleted() {
+        return completed;
     }
 }

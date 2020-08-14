@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import br.com.osouza.desafio.model.Album;
 import br.com.osouza.desafio.model.Post;
+import br.com.osouza.desafio.model.Todo;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -28,5 +29,8 @@ public interface JsonPlaceHolderApi {
 
     @GET("albums")
     Call<List<Album>> getAlbums();
+
+    @GET("todos")
+    Call<List<Todo>> getTodos();
 
 }
