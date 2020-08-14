@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.com.osouza.desafio.R;
-import br.com.osouza.desafio.model.Todo;
+import br.com.osouza.desafio.model.ToDo;
 
 public class TodosAdapter extends RecyclerView.Adapter<ToDosViewHolder> {
-    private List<Todo> todos;
+    private List<ToDo> toDos;
 
 
-    public TodosAdapter(List<Todo> todos) {
-        this.todos = todos;
+    public TodosAdapter(List<ToDo> toDos) {
+        this.toDos = toDos;
     }
 
     @NonNull
@@ -29,7 +29,7 @@ public class TodosAdapter extends RecyclerView.Adapter<ToDosViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ToDosViewHolder holder, int position) {
-        Todo todo = todos.get(position);
+        ToDo todo = toDos.get(position);
         holder.title.setText(todo.getTitle());
         if (todo.getCompleted()) {
             holder.completed.setImageResource(R.drawable.ic_baseline_done_24);
@@ -42,6 +42,6 @@ public class TodosAdapter extends RecyclerView.Adapter<ToDosViewHolder> {
 
     @Override
     public int getItemCount() {
-        return todos.size();
+        return toDos.size();
     }
 }
