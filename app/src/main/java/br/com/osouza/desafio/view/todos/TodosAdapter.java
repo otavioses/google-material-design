@@ -37,7 +37,7 @@ public class TodosAdapter extends RecyclerView.Adapter<ToDosViewHolder> {
             holder.completed.setImageResource(R.drawable.ic_baseline_done_24);
             holder.completed.setBackgroundResource(R.color.colorGreenDone);
         } else {
-            holder.completed.setImageResource(R.drawable.ic_baseline_done_24);
+            holder.completed.setImageResource(R.drawable.ic_baseline_undone_24);
             holder.completed.setBackgroundResource(R.color.colorOrangeUndone);
         }
     }

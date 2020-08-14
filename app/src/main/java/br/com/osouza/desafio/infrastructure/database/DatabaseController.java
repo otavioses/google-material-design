@@ -64,7 +64,6 @@ public class DatabaseController {
             }
             @Override
             public void onFailure(Call<List<Album>> call, Throwable e) {
-                Log.d("", "");
             }
         });
     }
@@ -84,7 +83,6 @@ public class DatabaseController {
 
             @Override
             public void onFailure(Call<List<ToDo>> call, Throwable e) {
-                Log.d("", "");
             }
         });
     }
