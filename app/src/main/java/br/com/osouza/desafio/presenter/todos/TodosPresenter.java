@@ -16,6 +16,7 @@ public class TodosPresenter implements TodosPresenterInterface {
     public TodosPresenter(TodosFragmentInterface view) {
         mView = view;
     }
+
     @Override
     public void getItems() {
         final ToDoDAO dao = new ToDoDAO();

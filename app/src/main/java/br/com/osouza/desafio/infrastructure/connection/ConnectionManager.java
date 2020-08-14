@@ -13,7 +13,6 @@ public class ConnectionManager {
 
     static String BASE_URL = "https://jsonplaceholder.typicode.com/";
 
-
     public static <S> S createService(Class<S> serviceClass) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(60, TimeUnit.SECONDS)

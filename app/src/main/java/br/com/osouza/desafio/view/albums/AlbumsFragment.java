@@ -42,7 +42,7 @@ public class AlbumsFragment extends Fragment implements AlbumsFragmentInterface 
 
     @Override
     public void updateItems(List<AlbumEntity> list) {
-        albums.clear();;
+        albums.clear();
         albums.addAll(list);
         adapter.notifyDataSetChanged();
     }

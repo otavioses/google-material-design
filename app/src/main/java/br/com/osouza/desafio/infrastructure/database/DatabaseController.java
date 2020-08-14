@@ -1,7 +1,6 @@
 package br.com.osouza.desafio.infrastructure.database;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class DatabaseController {
         }
     }
 
-    public static  void updateDatabases() {
+    public static void updateDatabases() {
         updatePostsDatabase();
         updateAlbumsDatabase();
         updateToDosDatabase();
@@ -41,9 +40,10 @@ public class DatabaseController {
             public void onResponse(Call<List<Post>> call, retrofit2.Response<List<Post>> response) {
                 if (response.isSuccessful()) {
                     PostDAO postDAO = new PostDAO();
-                    postDAO.insertList(response.body(),Realm.getDefaultInstance());
+                    postDAO.insertList(response.body(), Realm.getDefaultInstance());
                 }
             }
+
             @Override
             public void onFailure(Call<List<Post>> call, Throwable e) {
             }
@@ -59,9 +59,10 @@ public class DatabaseController {
             public void onResponse(Call<List<Album>> call, retrofit2.Response<List<Album>> response) {
                 if (response.isSuccessful()) {
                     AlbumDAO albumDAO = new AlbumDAO();
-                    albumDAO.insertList(response.body(),Realm.getDefaultInstance());
+                    albumDAO.insertList(response.body(), Realm.getDefaultInstance());
                 }
             }
+
             @Override
             public void onFailure(Call<List<Album>> call, Throwable e) {
             }
@@ -77,7 +78,7 @@ public class DatabaseController {
             public void onResponse(Call<List<ToDo>> call, retrofit2.Response<List<ToDo>> response) {
                 if (response.isSuccessful()) {
                     ToDoDAO albumDAO = new ToDoDAO();
-                    albumDAO.insertList(response.body(),Realm.getDefaultInstance());
+                    albumDAO.insertList(response.body(), Realm.getDefaultInstance());
                 }
             }
 

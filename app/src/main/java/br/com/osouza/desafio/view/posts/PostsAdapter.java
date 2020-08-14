@@ -11,11 +11,9 @@ import java.util.List;
 
 import br.com.osouza.desafio.R;
 import br.com.osouza.desafio.infrastructure.database.PostEntity;
-import br.com.osouza.desafio.model.Post;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsViewHolder> {
     private List<PostEntity> posts;
-
 
     public PostsAdapter(List<PostEntity> posts) {
         this.posts = posts;
@@ -33,8 +31,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsViewHolder> {
         PostEntity post = posts.get(position);
         holder.title.setText(post.getTitle());
         holder.body.setText(post.getBody());
-
-
     }
 
     @Override

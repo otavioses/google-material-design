@@ -16,7 +16,7 @@ public class PostDAO {
         clearAll(realm);
 
         List<PostEntity> postEntities = new ArrayList<>();
-        for (Post post: list) {
+        for (Post post : list) {
             postEntities.add(new PostEntity(post));
         }
         realm.beginTransaction();

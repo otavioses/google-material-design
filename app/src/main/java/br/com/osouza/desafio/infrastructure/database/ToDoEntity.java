@@ -1,6 +1,5 @@
 package br.com.osouza.desafio.infrastructure.database;
 
-import br.com.osouza.desafio.model.Post;
 import br.com.osouza.desafio.model.ToDo;
 import io.realm.RealmObject;
 

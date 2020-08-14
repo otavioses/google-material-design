@@ -1,11 +1,10 @@
 package br.com.osouza.desafio.infrastructure.database;
 
 import br.com.osouza.desafio.model.Album;
-import br.com.osouza.desafio.model.Post;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class AlbumEntity  extends RealmObject {
+public class AlbumEntity extends RealmObject {
     @PrimaryKey
     private long id;
     private long userId;

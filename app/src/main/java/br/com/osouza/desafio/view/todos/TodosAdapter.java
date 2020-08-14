@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.com.osouza.desafio.R;
-import br.com.osouza.desafio.infrastructure.database.ToDoDAO;
 import br.com.osouza.desafio.infrastructure.database.ToDoEntity;
-import br.com.osouza.desafio.model.ToDo;
 
 public class TodosAdapter extends RecyclerView.Adapter<ToDosViewHolder> {
     private List<ToDoEntity> toDos;

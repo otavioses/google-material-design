@@ -14,16 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.osouza.desafio.R;
-import br.com.osouza.desafio.infrastructure.database.AlbumEntity;
-import br.com.osouza.desafio.infrastructure.database.PostDAO;
 import br.com.osouza.desafio.infrastructure.database.PostEntity;
-import br.com.osouza.desafio.model.Post;
-import br.com.osouza.desafio.presenter.albums.AlbumsPresenter;
-import br.com.osouza.desafio.presenter.albums.AlbumsPresenterInterface;
 import br.com.osouza.desafio.presenter.posts.PostsPresenter;
 import br.com.osouza.desafio.presenter.posts.PostsPresenterInterface;
-import io.realm.Realm;
-import io.realm.RealmChangeListener;
 
 public class PostsFragment extends Fragment implements PostsFragmentInterface {
 
@@ -49,7 +42,7 @@ public class PostsFragment extends Fragment implements PostsFragmentInterface {
 
     @Override
     public void updateItems(List<PostEntity> list) {
-        posts.clear();;
+        posts.clear();
         posts.addAll(list);
         adapter.notifyDataSetChanged();
     }

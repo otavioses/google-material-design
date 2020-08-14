@@ -43,7 +43,7 @@ public class ToDosFragment extends Fragment implements TodosFragmentInterface {
 
     @Override
     public void updateItems(List<ToDoEntity> list) {
-        toDos.clear();;
+        toDos.clear();
         toDos.addAll(list);
         adapter.notifyDataSetChanged();
     }

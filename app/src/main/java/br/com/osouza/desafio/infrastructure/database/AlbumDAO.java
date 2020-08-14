@@ -14,7 +14,7 @@ public class AlbumDAO {
     public void insertList(List<Album> list, Realm realm) {
         clearAll(realm);
         List<AlbumEntity> postEntities = new ArrayList<>();
-        for (Album album: list) {
+        for (Album album : list) {
             postEntities.add(new AlbumEntity(album));
         }
         realm.beginTransaction();
