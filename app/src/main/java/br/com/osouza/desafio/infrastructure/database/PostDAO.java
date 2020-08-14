@@ -13,12 +13,25 @@ public class PostDAO {
     }
 
     public void insertList(List<Post> list, Realm realm) {
+        clearAll(realm);
+
         List<PostEntity> postEntities = new ArrayList<>();
         for (Post post: list) {
             postEntities.add(new PostEntity(post));
         }
         realm.beginTransaction();
+
         realm.copyToRealmOrUpdate(postEntities);
         realm.commitTransaction();
+    }
+
+    public void clearAll(Realm realm) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.delete(PostEntity.class);
+            }
+        });
+
     }
 }

@@ -12,6 +12,7 @@ public class AlbumDAO {
     }
 
     public void insertList(List<Album> list, Realm realm) {
+        clearAll(realm);
         List<AlbumEntity> postEntities = new ArrayList<>();
         for (Album album: list) {
             postEntities.add(new AlbumEntity(album));
@@ -19,5 +20,14 @@ public class AlbumDAO {
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(postEntities);
         realm.commitTransaction();
+    }
+
+    public void clearAll(Realm realm) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.delete(AlbumEntity.class);
+            }
+        });
     }
 }

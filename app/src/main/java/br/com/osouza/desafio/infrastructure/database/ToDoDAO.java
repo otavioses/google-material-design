@@ -14,6 +14,7 @@ public class ToDoDAO {
     }
 
     public void insertList(List<ToDo> list, Realm realm) {
+        clearAll(realm);
         List<ToDoEntity> toDoEntities = new ArrayList<>();
         for (ToDo toDo: list) {
             toDoEntities.add(new ToDoEntity(toDo));
@@ -21,5 +22,13 @@ public class ToDoDAO {
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(toDoEntities);
         realm.commitTransaction();
+    }
+    public void clearAll(Realm realm) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.delete(ToDoEntity.class);
+            }
+        });
     }
 }
