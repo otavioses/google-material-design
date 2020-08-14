@@ -14,14 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.osouza.desafio.R;
-import br.com.osouza.desafio.infrastructure.database.ToDoDAO;
 import br.com.osouza.desafio.infrastructure.database.ToDoEntity;
-import io.realm.Realm;
+import br.com.osouza.desafio.presenter.todos.TodosPresenter;
+import br.com.osouza.desafio.presenter.todos.TodosPresenterInterface;
 
-public class ToDosFragment extends Fragment {
+public class ToDosFragment extends Fragment implements TodosFragmentInterface {
+
+    private TodosPresenterInterface mPresenter = new TodosPresenter(this);
     private RecyclerView recyclerView;
     private TodosAdapter adapter;
-    private List<ToDoEntity> list = new ArrayList<>();
+    private List<ToDoEntity> toDos = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,12 +32,19 @@ public class ToDosFragment extends Fragment {
         recyclerView = root.findViewById(R.id.todoReciclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        adapter = new TodosAdapter(list);
+        adapter = new TodosAdapter(toDos);
         recyclerView.setAdapter(adapter);
 
-        ToDoDAO dao = new ToDoDAO();
-        list.addAll(dao.getList(Realm.getDefaultInstance()));
+        mPresenter.getItems();
 
         return root;
+    }
+
+
+    @Override
+    public void updateItems(List<ToDoEntity> list) {
+        toDos.clear();;
+        toDos.addAll(list);
+        adapter.notifyDataSetChanged();
     }
 }
