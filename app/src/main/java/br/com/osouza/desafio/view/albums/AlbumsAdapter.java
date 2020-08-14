@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.com.osouza.desafio.R;
-import br.com.osouza.desafio.model.Album;
+import br.com.osouza.desafio.infrastructure.database.AlbumEntity;
 
 public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsViewHolder> {
-    private List<Album> albums;
+    private List<AlbumEntity> albums;
 
 
-    public AlbumsAdapter(List<Album> albums) {
+    public AlbumsAdapter(List<AlbumEntity> albums) {
         this.albums = albums;
     }
 
@@ -29,7 +29,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AlbumsViewHolder holder, int position) {
-        Album album = albums.get(position);
+        AlbumEntity album = albums.get(position);
         holder.title.setText(album.getTitle());
     }
 

@@ -15,13 +15,13 @@ import java.util.List;
 
 import br.com.osouza.desafio.R;
 import br.com.osouza.desafio.infrastructure.database.ToDoDAO;
-import br.com.osouza.desafio.model.ToDo;
+import br.com.osouza.desafio.infrastructure.database.ToDoEntity;
 import io.realm.Realm;
 
 public class ToDosFragment extends Fragment {
     private RecyclerView recyclerView;
     private TodosAdapter adapter;
-    private List<ToDo> posts = new ArrayList<>();
+    private List<ToDoEntity> list = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,11 +30,11 @@ public class ToDosFragment extends Fragment {
         recyclerView = root.findViewById(R.id.todoReciclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        adapter = new TodosAdapter(posts);
+        adapter = new TodosAdapter(list);
         recyclerView.setAdapter(adapter);
 
         ToDoDAO dao = new ToDoDAO();
-        posts.addAll(dao.getList(Realm.getDefaultInstance()));
+        list.addAll(dao.getList(Realm.getDefaultInstance()));
 
         return root;
     }

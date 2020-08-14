@@ -18,6 +18,7 @@ import br.com.osouza.desafio.R;
 import br.com.osouza.desafio.infrastructure.connection.ConnectionManager;
 import br.com.osouza.desafio.infrastructure.connection.JsonPlaceHolderApi;
 import br.com.osouza.desafio.infrastructure.database.AlbumDAO;
+import br.com.osouza.desafio.infrastructure.database.AlbumEntity;
 import br.com.osouza.desafio.infrastructure.database.PostDAO;
 import br.com.osouza.desafio.model.Album;
 import io.realm.Realm;
@@ -28,7 +29,7 @@ public class AlbumsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private AlbumsAdapter adapter;
-    private List<Album> albums = new ArrayList<>();
+    private List<AlbumEntity> albums = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

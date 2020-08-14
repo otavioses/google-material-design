@@ -8,13 +8,8 @@ import io.realm.Realm;
 
 public class PostDAO {
 
-    public List<Post> getList(Realm realm) {
-        List<PostEntity> postEntities = realm.where(PostEntity.class).findAll();
-        List<Post> list = new ArrayList<>();
-        for (PostEntity post: postEntities) {
-            list.add(new Post(post));
-        }
-        return list;
+    public List<PostEntity> getList(Realm realm) {
+        return realm.where(PostEntity.class).findAll();
     }
 
     public void insertList(List<Post> list, Realm realm) {

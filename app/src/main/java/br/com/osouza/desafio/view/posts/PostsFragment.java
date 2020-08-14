@@ -15,14 +15,16 @@ import java.util.List;
 
 import br.com.osouza.desafio.R;
 import br.com.osouza.desafio.infrastructure.database.PostDAO;
+import br.com.osouza.desafio.infrastructure.database.PostEntity;
 import br.com.osouza.desafio.model.Post;
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 
 public class PostsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private PostsAdapter adapter;
-    private List<Post> posts = new ArrayList<>();
+    private List<PostEntity> posts = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +38,14 @@ public class PostsFragment extends Fragment {
 
         PostDAO dao = new PostDAO();
         posts.addAll(dao.getList(Realm.getDefaultInstance()));
+        Realm.getDefaultInstance().addChangeListener(new RealmChangeListener<Realm>() {
+            @Override
+            public void onChange(Realm realm) {
+                PostDAO dao = new PostDAO();
+                posts.addAll(dao.getList(Realm.getDefaultInstance()));
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         return root;
     }

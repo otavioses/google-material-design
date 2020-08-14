@@ -9,13 +9,8 @@ import io.realm.Realm;
 
 public class ToDoDAO {
 
-    public List<ToDo> getList(Realm realm) {
-        List<ToDoEntity> toDoEntities = realm.where(ToDoEntity.class).findAll();
-        List<ToDo> list = new ArrayList<>();
-        for (ToDoEntity toDoEntity: toDoEntities) {
-            list.add(new ToDo(toDoEntity));
-        }
-        return list;
+    public List<ToDoEntity> getList(Realm realm) {
+        return realm.where(ToDoEntity.class).findAll();
     }
 
     public void insertList(List<ToDo> list, Realm realm) {
