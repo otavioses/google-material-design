@@ -14,14 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.osouza.desafio.R;
+import br.com.osouza.desafio.infrastructure.database.AlbumEntity;
 import br.com.osouza.desafio.infrastructure.database.PostDAO;
 import br.com.osouza.desafio.infrastructure.database.PostEntity;
 import br.com.osouza.desafio.model.Post;
+import br.com.osouza.desafio.presenter.albums.AlbumsPresenter;
+import br.com.osouza.desafio.presenter.albums.AlbumsPresenterInterface;
+import br.com.osouza.desafio.presenter.posts.PostsPresenter;
+import br.com.osouza.desafio.presenter.posts.PostsPresenterInterface;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 
-public class PostsFragment extends Fragment {
+public class PostsFragment extends Fragment implements PostsFragmentInterface {
 
+    private PostsPresenterInterface mPresenter = new PostsPresenter(this);
     private RecyclerView recyclerView;
     private PostsAdapter adapter;
     private List<PostEntity> posts = new ArrayList<>();
@@ -36,18 +42,15 @@ public class PostsFragment extends Fragment {
         adapter = new PostsAdapter(posts);
         recyclerView.setAdapter(adapter);
 
-        PostDAO dao = new PostDAO();
-        posts.addAll(dao.getList(Realm.getDefaultInstance()));
-        Realm.getDefaultInstance().addChangeListener(new RealmChangeListener<Realm>() {
-            @Override
-            public void onChange(Realm realm) {
-                PostDAO dao = new PostDAO();
-                posts.addAll(dao.getList(Realm.getDefaultInstance()));
-                adapter.notifyDataSetChanged();
-            }
-        });
+        mPresenter.getItems();
 
         return root;
     }
 
+    @Override
+    public void updateItems(List<PostEntity> list) {
+        posts.clear();;
+        posts.addAll(list);
+        adapter.notifyDataSetChanged();
+    }
 }

@@ -1,11 +1,10 @@
-package br.com.osouza.desafio.presenter;
+package br.com.osouza.desafio.presenter.albums;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.osouza.desafio.infrastructure.database.AlbumDAO;
 import br.com.osouza.desafio.infrastructure.database.AlbumEntity;
-import br.com.osouza.desafio.infrastructure.database.PostDAO;
 import br.com.osouza.desafio.view.albums.AlbumsFragmentInterface;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;

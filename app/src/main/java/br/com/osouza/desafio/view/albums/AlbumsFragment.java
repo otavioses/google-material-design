@@ -15,8 +15,8 @@ import java.util.List;
 
 import br.com.osouza.desafio.R;
 import br.com.osouza.desafio.infrastructure.database.AlbumEntity;
-import br.com.osouza.desafio.presenter.AlbumsPresenter;
-import br.com.osouza.desafio.presenter.AlbumsPresenterInterface;
+import br.com.osouza.desafio.presenter.albums.AlbumsPresenter;
+import br.com.osouza.desafio.presenter.albums.AlbumsPresenterInterface;
 
 public class AlbumsFragment extends Fragment implements AlbumsFragmentInterface {
 
@@ -44,5 +44,6 @@ public class AlbumsFragment extends Fragment implements AlbumsFragmentInterface 
     public void updateItems(List<AlbumEntity> list) {
         albums.clear();;
         albums.addAll(list);
+        adapter.notifyDataSetChanged();
     }
 }
